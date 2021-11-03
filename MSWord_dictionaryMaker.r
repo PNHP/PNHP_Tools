@@ -59,7 +59,8 @@ rm(addWords_mod, addWords_org, addWords_tools,addWords_sciencewords) #,addWords_
 fn <- "PA_Features.zip"
 download.file(url="https://geonames.usgs.gov/docs/stategaz/PA_Features.zip", destfile = here::here(fn)) # https://www.usgs.gov/core-science-systems/ngp/board-on-geographic-names/download-gnis-data
 unzip(here::here(fn))
-gnis <- read.delim(here::here("PA_Features_20210301.txt"), sep="|", stringsAsFactors=FALSE)
+# find a the most recent text file
+gnis <- read.delim(here::here("PA_Features_20210825.txt"), sep="|", stringsAsFactors=FALSE)
 gnis <- gnis[c("FEATURE_NAME","FEATURE_CLASS","COUNTY_NAME","MAP_NAME")]
 gnis <- gnis[which(gnis$FEATURE_CLASS!="Building" & gnis$FEATURE_CLASS!="Hospital" & gnis$FEATURE_CLASS!="School" & gnis$FEATURE_CLASS!="Gut" & gnis$FEATURE_CLASS!="Airport" & gnis$FEATURE_CLASS!="Military" & gnis$FEATURE_CLASS!="Oilfield" & gnis$FEATURE_CLASS!="Tower"),] # clear out some names we're likely not to use
 #Delete zipfile if it exists
